@@ -1,0 +1,13 @@
+meta:
+  name: Person
+  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+
+content:
+  base: 
+    - name: Person
+      attributes:
+        name: String
+        dateOfBirth: Date
+        age: Integer
+        sex: String
+        employer: String

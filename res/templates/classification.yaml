@@ -1,0 +1,15 @@
+meta:
+  name: Person
+  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+
+content:
+  overlays: 
+    - type: OverlayClassification
+      base: Person
+      name: PersonClassificationOverlay
+      attributes:
+        name: pii
+        dateOfBirth: pii
+        sex: 
+          - pii
+          - gdpr_sensitive

@@ -1,0 +1,11 @@
+meta:
+  name: Person
+  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+
+content:
+  overlays: 
+    - type: OverlayFormat
+      base: Person
+      name: PersonFormatOverlay
+      attributes:
+        dateOfBirth: DD/MM/YYYY

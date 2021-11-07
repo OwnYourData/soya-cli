@@ -1,0 +1,10 @@
+node_modules/
+dist/
+tmp/
+
+tsconfig.tsbuildinfo
+
+# nexe build artifact
+# soya
+
+.vscode/
