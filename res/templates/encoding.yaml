@@ -1,6 +1,5 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonEncoding
 
 content:
   overlays: 
@@ -12,4 +11,3 @@ content:
         dateOfBirth: UTF-8
         age: UTF-8
         sex: UTF-8
-        employer: UTF-8

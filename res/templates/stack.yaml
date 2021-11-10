@@ -1,6 +1,5 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonStack
   namespace:
     foaf: "http://xmlns.com/foaf/0.1/"
     dc: "http://purl.org/dc/elements/1.1/"
@@ -13,11 +12,11 @@ content:
         dateOfBirth: Date
         age: Integer
         sex: String
-        employer: String
 
   overlays: 
     - type: OverlayAnnotation
       base: Person
+      name: PersonAnnotationOverlay
       class: 
         label: 
           en: Person
@@ -29,7 +28,7 @@ content:
           label: 
             en: Name
             de: Name
-        dateOfBirth: 
+        dateOfBirth:
           label: 
             en: Date of Birth 
             de: Geburtsdatum
@@ -42,13 +41,10 @@ content:
           comment: 
             en: Gender (male or female)
             de: Geschlecht (männlich oder weiblich)
-        employer: 
-          label: 
-            en: Employer
-            de: Arbeitgeber
 
     - type: OverlayClassification
       base: Person
+      name: PersonClassificationOverlay
       attributes:
         name: pii
         dateOfBirth: pii
@@ -57,21 +53,23 @@ content:
           - gdpr_sensitive
 
     - type: OverlayEncoding
-      base: Person    
+      base: Person
+      name: PersonEncodingOverlay
       attributes:
         name: UTF-8
         dateOfBirth: UTF-8
         age: UTF-8
         sex: UTF-8
-        employer: UTF-8
 
     - type: OverlayFormat
       base: Person
+      name: PersonFormatOverlay
       attributes:
         dateOfBirth: DD/MM/YYYY
 
     - type: OverlayAlignment
       base: Person
+      name: PersonAlignmentOverlay
       attributes:
         name: 
           - foaf:name
@@ -80,15 +78,15 @@ content:
 
     - type: OverlayValidation
       base: Person
-      class: 
+      name: PersonValidationOverlay
       attributes:
         name: 
           cardinality: "1..1"
           length: "[0..20)"
-          pattern: "/^[a-z ,.'-]+$/i"
+          pattern: "^[a-z ,.'-]+$"
         dateOfBirth:
           cardinality: "1..1"
-          valueRange: "[1900-01-01..*]"                    
+          valueRange: "[1900-01-01..*]"
         age: 
           cardinality: "0..1"
           valueRange: "[0..*]"
@@ -97,5 +95,3 @@ content:
           valueOption:
             - male
             - female
-        employer:
-          cardinality: "0..*"

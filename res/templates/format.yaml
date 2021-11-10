@@ -1,6 +1,5 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonFormat
 
 content:
   overlays: 
