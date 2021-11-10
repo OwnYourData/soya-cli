@@ -1,13 +1,11 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonValidation
 
 content:
   overlays: 
     - type: OverlayValidation
       base: Person
       name: PersonValidationOverlay
-      class: 
       attributes:
         name: 
           cardinality: "1..1"
@@ -24,5 +22,3 @@ content:
           valueOption:
             - male
             - female
-        employer:
-          cardinality: "0..*"

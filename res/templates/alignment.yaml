@@ -1,6 +1,5 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonAlignment
   namespace:
     foaf: "http://xmlns.com/foaf/0.1/"
     dc: "http://purl.org/dc/elements/1.1/"

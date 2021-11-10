@@ -1,6 +1,5 @@
 meta:
-  name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
+  name: PersonAnnotation
 
 content:
   overlays: 
@@ -31,7 +30,3 @@ content:
           comment: 
             en: Gender (male or female)
             de: Geschlecht (männlich oder weiblich)
-        employer: 
-          label: 
-            en: Employer
-            de: Arbeitgeber

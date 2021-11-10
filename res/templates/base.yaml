@@ -1,6 +1,5 @@
 meta:
   name: Person
-  context: https://ns.ownyourdata.eu/ns/soya-context.json 
 
 content:
   base: 
@@ -10,4 +9,3 @@ content:
         dateOfBirth: Date
         age: Integer
         sex: String
-        employer: String
