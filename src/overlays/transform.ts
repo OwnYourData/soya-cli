@@ -23,7 +23,7 @@ export class SoyaTransform implements CommandPlugin {
     logger.debug(`Writing jolt data ${dataFilePath}`);
     await fs.writeFile(dataFilePath, JSON.stringify(data));
 
-    return new Promise<OverlayResult>((resolve) => {
+    return new Promise<OverlayResult>((resolve, reject) => {
       const command = cmdArgs.executable ?? 'jolt';
       const commandParams = [
         'transform',
@@ -35,8 +35,17 @@ export class SoyaTransform implements CommandPlugin {
       proc.exec(command + ' ' + commandParams.join(' '), (_, stdout) => {
         logger.debug('Removing temp dir');
         removeTempDir();
+
+        let data: any;
+        try {
+          data = JSON.parse(stdout);
+        } catch (e) {
+          logger.error('Could not apply jolt transformation')
+          reject(e);
+        }
+
         resolve({
-          data: JSON.parse(stdout),
+          data,
         });
       });
     });
