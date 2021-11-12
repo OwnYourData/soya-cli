@@ -186,7 +186,7 @@ const printPushHelp = () => {
     {
       header: 'Usage',
       content: [
-        '$ document.jsonld | soya push',
+        '$ cat document.jsonld | soya push',
       ]
     },
     getGeneralOptions(),
