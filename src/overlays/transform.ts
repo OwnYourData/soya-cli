@@ -1,6 +1,6 @@
 import proc from 'child_process';
 import fs from 'fs/promises';
-// import * as jq from 'node-jq';
+import * as jq from 'node-jq';
 import { Overlay, CommandPlugin, OverlayResult } from './interface';
 import { escapeFilename, makeTempDir } from '../utils/core';
 import path from 'path';
@@ -31,7 +31,7 @@ export class SoyaTransform implements CommandPlugin {
         escapeFilename(dataFilePath),
       ];
 
-      logger.debug(`Running jolt ${command} with ${commandParams.toString()}`);
+      logger.debug(`Executing jolt ${command} with ${commandParams.toString()}`);
       proc.exec(command + ' ' + commandParams.join(' '), (_, stdout) => {
         logger.debug('Removing temp dir');
         removeTempDir();
@@ -40,6 +40,17 @@ export class SoyaTransform implements CommandPlugin {
         });
       });
     });
+  }
+
+  private runJq = async (filter: string, data: any): Promise<OverlayResult> => {
+    logger.debug('Executing jq');
+    const jqOut = await jq.run(filter, data, {
+      input: 'json',
+    });
+
+    return {
+      data: typeof jqOut === 'string' ? JSON.parse(jqOut) : jqOut,
+    }
   }
 
   run = (overlay: Overlay, data: any): Promise<OverlayResult> => {
@@ -54,7 +65,13 @@ export class SoyaTransform implements CommandPlugin {
             return this.runJolt(item.value, data);
           }
           else
-            throw new Error('jolt expects an error as input!');
+            throw new Error('jolt expects an array as input!');
+        case 'jq':
+          if (typeof item.value === 'string') {
+            return this.runJq(item.value, data);
+          }
+          else
+            throw new Error('jq expects a string as input!')
         default:
           throw new Error(`Transform engine ${item.engine} not supported!`);
       }
