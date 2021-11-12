@@ -168,7 +168,14 @@ const overlayPlugins: CommandObject = {
   if (!plugin)
     return exitWithError(`No plugin available for command "${command}"!`);
 
-  const parsedInput = JSON.parse(input);
+  let parsedInput: any;
+  try {
+    parsedInput = JSON.parse(input);
+  } catch {
+    logger.error('Input data is not valid JSON!')
+    return;
+  }
+
   logger.debug('Overlay:', layer);
   logger.debug('Data In:', parsedInput);
 
