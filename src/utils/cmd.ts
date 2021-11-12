@@ -10,6 +10,7 @@ interface CmdArgs {
   repo?: string,
   verbose?: boolean[],
   help?: false,
+  executable?: string,
 }
 
 const globalDefinition: cmdInterface[] = [
@@ -186,11 +187,40 @@ const printPushHelp = () => {
     {
       header: 'Usage',
       content: [
-        '$ document.jsonld | soya push',
+        '$ cat document.jsonld | soya push',
       ]
     },
     getGeneralOptions(),
   ]));
+}
+
+const transformDefinition: cmdInterface[] = [
+  {
+    name: 'executable',
+    description: 'Defines the executable to use for transformation',
+    alias: 'e',
+    type: String,
+  }
+];
+const printTransformHelp = () => {
+  console.log(commandLineUsage([
+    {
+      header: 'Description',
+      content: 'Uses transformation layers to apply transformations on input data',
+    },
+    {
+      header: 'Usage',
+      content: [
+        '$ cat input.json | soya transform <name | DRI>',
+        '$ cat input.json | soya transform <name | DRI> --executable "java -jar jolt.jar"',
+      ]
+    },
+    {
+      header: 'Options',
+      optionList: transformDefinition,
+    },
+    getGeneralOptions(),
+  ]))
 }
 
 export const printCliHelp = async (command?: string): Promise<never> => {
@@ -216,6 +246,9 @@ export const printCliHelp = async (command?: string): Promise<never> => {
       case 'push':
         printPushHelp();
         break;
+      case 'transform':
+        printTransformHelp();
+        break;
       default:
         if (commands.indexOf(command) !== -1)
           printSimpleCommandHelp(command);
@@ -227,4 +260,7 @@ export const printCliHelp = async (command?: string): Promise<never> => {
   process.exit(0);
 }
 
-export const cmdArgs = commandLineArgs(globalDefinition) as CmdArgs;
+export const cmdArgs = commandLineArgs([
+  ...globalDefinition,
+  ...transformDefinition,
+]) as CmdArgs;
