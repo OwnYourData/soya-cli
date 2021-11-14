@@ -8,16 +8,16 @@ RUN addgroup -S soyagroup && \
     apk del make gcc musl-dev && \
     wget https://raw.githubusercontent.com/OwnYourData/did-cmd/main/oydid.rb -O /usr/local/bin/oydid && \
     chmod 755 /usr/local/bin/oydid
-
+ENV NODE_ENV=development
 WORKDIR /usr/src/app
 COPY . .
-RUN npm i && \
+RUN ln -s /usr/src/app/docker/jolt /usr/local/bin && \
+    npm install && \
     npm run build && \
-    npm run bin && \
-    ln -s /usr/src/app/docker/jolt /usr/local/bin
+    npm run bin
 
 USER user
 WORKDIR /home/user
 
 
-CMD ["sh"]
+CMD ["bash"]

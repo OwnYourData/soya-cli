@@ -1,0 +1,38 @@
+{
+  "isValid": false,
+  "results": [
+    {
+      "message": [
+        {
+          "value": "Less than 1 values",
+          "datatype": {
+            "value": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "language": ""
+        }
+      ],
+      "termType": "NamedNode",
+      "value": "https://soya.data-container.net/Person_Test/name",
+      "severity": {
+        "value": "http://www.w3.org/ns/shacl#Violation"
+      }
+    },
+    {
+      "message": [
+        {
+          "value": "Less than 1 values",
+          "datatype": {
+            "value": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "language": ""
+        }
+      ],
+      "termType": "NamedNode",
+      "value": "https://soya.data-container.net/Person_Test/dateOfBirth",
+      "severity": {
+        "value": "http://www.w3.org/ns/shacl#Violation"
+      }
+    }
+  ],
+  "classChecks": []
+}
