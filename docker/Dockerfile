@@ -15,7 +15,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN chgrp -R user /usr/src/app && \
-    chown -R user /usr/src/app
+    chown -R user /usr/src/app && \
+    cat docker/welcome.txt > /etc/motd
 
 USER user
 
@@ -28,5 +29,7 @@ RUN npm run bin && \
 
 USER user
 WORKDIR /home/user
+
+COPY docker/home .
 
 CMD ["bash"]
