@@ -2,6 +2,10 @@
   "isValid": false,
   "results": [
     {
+      "id": {
+        "termType": "NamedNode",
+        "value": "https://soya.data-container.net/Person2instance_test"
+      },
       "message": [
         {
           "value": "Less than 1 values",
@@ -18,6 +22,10 @@
       }
     },
     {
+      "id": {
+        "termType": "NamedNode",
+        "value": "https://soya.data-container.net/Person2instance_test"
+      },
       "message": [
         {
           "value": "Less than 1 values",
