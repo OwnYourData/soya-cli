@@ -54,6 +54,7 @@ export class SoyaValidate implements CommandPlugin {
       data: {
         isValid: res.conforms && classChecks.length === 0,
         results: res.results.map(x => ({
+          id: x.focusNode,
           message: x.message,
           ...x.path,
           severity: x.severity,
