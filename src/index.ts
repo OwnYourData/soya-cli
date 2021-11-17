@@ -25,6 +25,9 @@ const overlayPlugins: CommandObject = {
 };
 
 (async () => {
+  if (cmdArgs.version)
+    return console.log(packageJson.version);
+
   if (!cmdArgs.default || (!cmdArgs.default && cmdArgs.help))
     return printCliHelp();
 

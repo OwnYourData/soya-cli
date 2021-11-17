@@ -11,6 +11,7 @@ interface CmdArgs {
   verbose?: boolean[],
   help?: false,
   executable?: string,
+  version: boolean,
 }
 
 const globalDefinition: cmdInterface[] = [
@@ -36,6 +37,12 @@ const globalDefinition: cmdInterface[] = [
     description: 'Prints general help page and command specific help page',
     alias: 'h',
     type: Boolean,
+  },
+  {
+    name: 'version',
+    description: 'Show version number of soya-cli',
+    type: Boolean,
+    defaultValue: false,
   }
 ];
 
